@@ -4,17 +4,24 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "type": "node",
             "request": "launch",
             "name": "Test actions",
-            "args": ["${workspaceFolder}/tests/test-actions.ts"],
-            "runtimeArgs": [
-                "-r", "ts-node/register"
-            ],
+            "program": "${workspaceFolder}/dist/tests/test-actions.js",
             "cwd": "${workspaceRoot}",
-            "protocol": "inspector",
 
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Test generic_constraints",
+            "program": "${workspaceFolder}/dist/tests/test-generic_constraint.js",
+            "cwd": "${workspaceRoot}",
+            "protocol": "auto",
         }
+
+
     ]
 }
