@@ -7,8 +7,8 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
-            "args": ["${workspaceFolder}/index.ts"],
+            "name": "Test actions",
+            "args": ["${workspaceFolder}/tests/test-actions.ts"],
             "runtimeArgs": [
                 "-r", "ts-node/register"
             ],
