@@ -1,5 +1,5 @@
 import * as prettier from 'prettier';
-import fs from 'fs';
+import fs, { unwatchFile } from 'fs';
 
 export type convertOptions = {
   dump_ast? : boolean
@@ -18,7 +18,7 @@ export function convert(srcpath: string, options : convertOptions) {
     recurseFindTypes(ast.body, {
       
       TypeCastExpression: removeTypeCastExpressions,
-      TypeParameter: convertTypeParameter
+      TypeParameter: convertTypeParameter,
     });
 
     
@@ -82,6 +82,11 @@ type TypeParameter = ASTEntry & {
   default: ASTEntry
 }
 
+type TSTypeParameter = ASTEntry & {
+  type : "TSTypeParameter",
+  constraint: ASTEntry,
+}
+
 function removeTypeCastExpressions(o: ASTEntry) {
   const obj = o as TypeCastExpression;
   // substitute body with contents of expression.
@@ -96,9 +101,51 @@ function removeTypeParameterDefault(e: ASTEntry) {
   delete obj.default;
 }
 
-function convertTypeParameter(e: ASTEntry) {
-  const obj = e as TypeParameter;
-  removeTypeParameterDefault(e); // don't think typescript supports default args for generics.
-  delete obj.bound;  
+function convertTypeTypeAnnotationToTSTypeReference(e: ASTEntry) : ASTEntry {
+  if(e.type !== 'TypeAnnotation') {
+    throw new Error("wrong");
+  }
+  const r = (e as any).typeAnnotation;
+  if(r.type !=='GenericTypeAnnotation') {
+    throw new Error("dont know this one");    
+  }
+  r.type = "TSTypeReference";
+  r.typeName = r.id;
+  delete r.id;
+  return r;
 }
 
+function convertTypeParameter(e: ASTEntry) {
+  const obj = e as TypeParameter;
+  const ts = e as TSTypeParameter;
+  removeTypeParameterDefault(e); // don't think typescript supports default args for generics.
+  e.type = "TSTypeParameter",
+  ts.constraint = obj.bound;
+  ts.constraint = convertTypeTypeAnnotationToTSTypeReference(obj.bound);
+  delete obj.bound;
+}
+
+
+
+export function analyseref(srcpath: string, options : convertOptions) {
+
+
+  var parserSrc: prettier.CustomParser = (text : string, { typescript }) => {
+    const ast : prettier.AST = typescript(text);
+
+    if(options.dump_ast) {
+      fs.writeFileSync(srcpath.replace(".ts", ".ast"), JSON.stringify(ast, null, 4));
+    }
+
+    return ast;
+  }
+
+  const srctxt = fs.readFileSync(srcpath, 'utf-8');
+
+  // capture typescript ast
+  const result = prettier.format(srctxt, {
+    parser : parserSrc
+  });
+
+  return result;
+}
