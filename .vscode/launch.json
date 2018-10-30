@@ -20,8 +20,15 @@
             "program": "${workspaceFolder}/dist/tests/test-generic_constraint.js",
             "cwd": "${workspaceRoot}",
             "protocol": "auto",
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Test reexport_type",
+            "program": "${workspaceFolder}/dist/tests/test-reexport_type.js",
+            "cwd": "${workspaceRoot}",
+            "protocol": "auto",
         }
-
 
     ]
 }
