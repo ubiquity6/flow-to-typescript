@@ -28,7 +28,22 @@
             "program": "${workspaceFolder}/dist/tests/test-reexport_type.js",
             "cwd": "${workspaceRoot}",
             "protocol": "auto",
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Test cast",
+            "program": "${workspaceFolder}/dist/tests/test-cast.js",
+            "cwd": "${workspaceRoot}",
+            "protocol": "auto",
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Test plus",
+            "program": "${workspaceFolder}/dist/tests/test-plus.js",
+            "cwd": "${workspaceRoot}",
+            "protocol": "auto",
         }
-
     ]
 }
