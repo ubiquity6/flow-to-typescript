@@ -4,6 +4,11 @@ It uses a quirk that prettier's ast parser is an intersting union of flow and ty
 
 It's nowhere near perfect, but I'm able to use it to generate .d.ts files from a fairly large flow codebase, so it serves some purpose. It generates a ton of errors, but the typescript compiler can still output the .d.ts files anyways.
 
+
+Note. This:
+https://github.com/Kiikurage/babel-plugin-flow-to-typescript
+Looks like a better idea.
+
 CLI Usage
 =============
 node (root)/dist/src/cli *.js
