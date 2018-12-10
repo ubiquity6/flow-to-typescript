@@ -44,6 +44,17 @@
             "program": "${workspaceFolder}/dist/tests/test-plus.js",
             "cwd": "${workspaceRoot}",
             "protocol": "auto",
-        }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Test actions.d.ts",
+            "program": "${workspaceFolder}/dist/src/cli.js",
+            "cwd": "${workspaceRoot}",
+            "args": [
+                "tests/src/actions.js"
+            ],
+            "protocol": "auto",
+        },
     ]
 }

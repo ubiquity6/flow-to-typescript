@@ -19,7 +19,9 @@ console.log("options:", options);
 if(options.src) {
     options.src.forEach((src:string) => {
         console.log("processing ", src);
-        var tsSource = convert(src, {
+
+        let flowSource = fs.readFileSync(src, 'uft-8');
+        var tsSource = convert(flowSource, src, {
             no_emit : !options.emitSrc
         });
 

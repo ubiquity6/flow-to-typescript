@@ -4,12 +4,12 @@ import fs from 'fs';
 import {ASTEntry}  from './asttypes';
 import { convertTypeCastExpression, convertTypeParameter, convertTypeAnnotation, convertAnyTypeAnnotation, convertVoidTypeAnnotation, convertObjectTypeProperty, convertImportSpecifier } from './converters';
 
-export type convertOptions = {
+export type ConvertOptions = {
   dump_ast? : boolean
   no_emit? : boolean
   print_types?: boolean
 }
-export function convert(srcpath: string, options : convertOptions) {
+export function convert(srctxt:string, srcpath: string, options : ConvertOptions) {
 
 
   var parserSrc: prettier.CustomParser = (text : string, { flow }) => {
@@ -58,7 +58,6 @@ export function convert(srcpath: string, options : convertOptions) {
 
 
 
-  const srctxt = fs.readFileSync(srcpath, 'utf-8');
 
   // capture flow ast
   const result = prettier.format(srctxt, {
@@ -73,7 +72,7 @@ export function convert(srcpath: string, options : convertOptions) {
 }
 
 
-export function analyseref(srcpath: string, options : convertOptions) {
+export function analyseref(srcpath: string, options : ConvertOptions) {
 
 
   var parserSrc: prettier.CustomParser = (text : string, { typescript }) => {
