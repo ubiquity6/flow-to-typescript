@@ -1,6 +1,6 @@
 
-import { convert } from '../src/index';
+import { convert } from '../src/lib';
 
-var result = convert('tests/src/actions.js', {dump_ast: true, no_emit: true});
+var result = convert(null, 'tests/src/actions.js', {dump_ast: true, no_emit: true});
 
 console.log(result);

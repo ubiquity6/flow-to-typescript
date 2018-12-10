@@ -1,8 +1,7 @@
 import commandLineArgs from 'command-line-args';
-import { convert } from './index';
+import { convert } from './lib';
 import * as fs from 'fs';
 import * as path from 'path';
-import { writeDeclaration } from './typelib';
 
 const optionDefinitions = [
 //  { name: 'verbose', alias: 'v', type: Boolean },
@@ -24,11 +23,6 @@ if(options.src) {
         var tsSource = convert(flowSource, src, {
             no_emit : !options.emitSrc
         });
-
-        if(options.emitTypes) {
-            console.log("emitting types");
-            writeDeclaration(tsSource, src.replace('.js', 'd.ts'));
-        }
     })
 }
 else {

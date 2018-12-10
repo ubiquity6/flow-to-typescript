@@ -6,7 +6,7 @@ var PLUGIN_NAME = 'gulp-flow-to-typescipt';
 import {Transform} from 'readable-stream';
 import path from 'path';
 
-function main(options: ConvertOptions) {
+export function gulp(options: ConvertOptions) {
     if (!options) {
         options = {};
     }
@@ -57,5 +57,3 @@ function main(options: ConvertOptions) {
         }
     });
 };
-
-export = main;
