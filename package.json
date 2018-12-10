@@ -1,13 +1,13 @@
 {
   "name": "flow-to-typescript",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "Tool to help convert flow source to typescript source",
   "main": "dist/src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Nicolas Coderre",
+  "license": "GPL-3.0-only",
   "devDependencies": {
     "prettier": "^1.14.3",
     "ts-node": "^7.0.1",
@@ -20,5 +20,22 @@
     "command-line-args": "^5.0.2",
     "plugin-error": "^1.0.1",
     "readable-stream": "^3.0.6"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ubiquity6/flow-to-typescript.git"
+  },
+  "keywords": [
+    "flow",
+    "typescript",
+    "ast",
+    "gulp"
+  ],
+  "bugs": {
+    "url": "https://github.com/ubiquity6/flow-to-typescript/issues"
+  },
+  "homepage": "https://github.com/ubiquity6/flow-to-typescript#readme"
 }
