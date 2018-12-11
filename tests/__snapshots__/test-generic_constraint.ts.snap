@@ -2,8 +2,8 @@
 
 exports[`generic_constraint main 1`] = `
 "// @flow
-export interface Foo {
-  constructor(): void;
-}
+export type MemberMap = {};
+
+export default class Entity<Members extends MemberMap> {}
 "
 `;
