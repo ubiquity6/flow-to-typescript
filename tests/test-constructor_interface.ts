@@ -5,7 +5,7 @@ describe('constructor_interface', () => {
     it('main', () =>
       expect(convert(null, 'tests/src/constructor_interface.js', {dump_ast: true, 
         no_emit: true,
-        print_types: true
+        print_types: false
     })).toMatchSnapshot()
   )
 });
