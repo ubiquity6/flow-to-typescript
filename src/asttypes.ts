@@ -23,6 +23,13 @@ export type TSTypeParameter = ASTEntry & {
     constraint: ASTEntry,
 }
 
+export type Identifier = ASTEntry & {
+    type: "Identifier",
+    name : string,
+    typeAnnotation: ASTEntry,
+    optional: boolean
+}
+
 export type ObjectTypeProperty = ASTEntry & {
     type: "ObjectTypeProperty",
     key: ASTEntry,
@@ -42,3 +49,12 @@ export type ImportSpecifier = ASTEntry & {
     importKind: "type" | "value"
 }
 
+
+
+export type FunctionTypeAnnotation = ASTEntry & {
+    type: "FunctionTypeAnnotation",
+    params: ASTEntry[],
+    returnType: ASTEntry,
+    rest: any, // ?
+    typeParameters: any// ?
+}

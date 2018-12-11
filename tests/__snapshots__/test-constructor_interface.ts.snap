@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`constructor_interface main 1`] = `
+"// @flow
+export interface Foo {
+  constructor(): void;
+}
+"
+`;

@@ -1,14 +1,11 @@
 
 import { convert,analyseref } from '../src/index';
 
-var result = convert(null, 'tests/src/plus.js', {dump_ast: true, 
-    no_emit: true,
-    print_types: true
+describe('plus', () => {
+    it('main', () =>
+      expect(convert(null, 'tests/src/plus.js', {dump_ast: true, 
+        no_emit: true,
+        print_types: false
+    })).toMatchSnapshot()
+  )
 });
-
-console.log(result);
-
-/*var result = analyseref('tests/out/cast.ts', {dump_ast: true, 
-    no_emit: true,
-    print_types: true
-});*/

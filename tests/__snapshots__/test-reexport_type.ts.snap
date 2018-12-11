@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`reexport_type main 1`] = `
+"// @flow
+
+import {
+  registryInstance,
+  Serializer,
+  Deserializer
+} from \\"ubq-jscore-serializer\\";
+import { Vector3 as Vector3Impl } from \\"three\\";
+
+export { LifecycleActions } from \\"./actions\\";
+"
+`;

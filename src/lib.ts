@@ -65,7 +65,7 @@ export function convert(srctxt:string|null, srcpath: string, options : ConvertOp
 
   // legacy api
   if(!srctxt) {
-    srctxt = fs.readFileSync(srcpath, 'uft-8');
+    srctxt = fs.readFileSync(srcpath, 'utf-8');
   }
 
 

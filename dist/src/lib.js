@@ -58,7 +58,7 @@ function convert(srctxt, srcpath, options) {
     }
     // legacy api
     if (!srctxt) {
-        srctxt = fs_1.default.readFileSync(srcpath, 'uft-8');
+        srctxt = fs_1.default.readFileSync(srcpath, 'utf-8');
     }
     // capture flow ast
     const result = prettier.format(srctxt, {

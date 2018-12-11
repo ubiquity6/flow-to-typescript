@@ -1,4 +1,4 @@
-import { ASTEntry, TypeCastExpression, TypeParameter, TSTypeParameter, ObjectTypeProperty, ImportSpecifier } from "./asttypes";
+import { ASTEntry, TypeCastExpression, TypeParameter, TSTypeParameter, ObjectTypeProperty, ImportSpecifier, Identifier, FunctionTypeAnnotation } from "./asttypes";
 
 export function removeTypeCastExpressions(o: ASTEntry) {
     const obj = o as TypeCastExpression;
@@ -60,6 +60,18 @@ export function convertObjectTypeProperty(e: ASTEntry) {
     var ot = e as ObjectTypeProperty
     // right now, we just want to strip variance.
     delete ot.variance;
+
+    // check if it's a constructor signature
+    if(ot.key && ot.key.type == "Identifier") {
+        var id = ot.key as Identifier;
+        if(id.name === "constructor" && ot.value.type === "FunctionTypeAnnotation") {
+            // flow likes to put void return types on constructors.
+            // typescript does not.
+            var ctorFunction = ot.value as FunctionTypeAnnotation;
+            if(ctorFunction.returnType.type === "VoidTypeAnnotation")
+                delete ctorFunction.returnType;
+        }
+    }
 }
 
 export function convertImportSpecifier(e: ASTEntry) {

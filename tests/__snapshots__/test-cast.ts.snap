@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cast main 1`] = `
+"function addChild(child: TransformComponent): void {
+  const tc = (mutableState.parent as any) as TransformComponent;
+}
+"
+`;

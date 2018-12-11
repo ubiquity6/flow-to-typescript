@@ -60,6 +60,17 @@ function convertObjectTypeProperty(e) {
     var ot = e;
     // right now, we just want to strip variance.
     delete ot.variance;
+    // check if it's a constructor signature
+    if (ot.key && ot.key.type == "Identifier") {
+        var id = ot.key;
+        if (id.name === "constructor" && ot.value.type === "FunctionTypeAnnotation") {
+            // flow likes to put void return types on constructors.
+            // typescript does not.
+            var ctorFunction = ot.value;
+            if (ctorFunction.returnType.type === "TSVoidKeyword")
+                delete ctorFunction.returnType;
+        }
+    }
 }
 exports.convertObjectTypeProperty = convertObjectTypeProperty;
 function convertImportSpecifier(e) {

@@ -1,16 +1,12 @@
 
 import { convert,analyseref } from '../src/index';
 
-describe('generic_constraint', () => {
+describe('constructor_interface', () => {
     it('main', () =>
       expect(convert(null, 'tests/src/constructor_interface.js', {dump_ast: true, 
         no_emit: true,
-        print_types: false
+        print_types: true
     })).toMatchSnapshot()
   )
 });
 
-var result = analyseref('tests/out/generic_constraint.ts', {dump_ast: true, 
-    no_emit: true,
-    print_types: false
-});
