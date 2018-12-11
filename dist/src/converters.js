@@ -67,7 +67,7 @@ function convertObjectTypeProperty(e) {
             // flow likes to put void return types on constructors.
             // typescript does not.
             var ctorFunction = ot.value;
-            if (ctorFunction.returnType.type === "TSVoidKeyword")
+            if (ctorFunction.returnType.type === "VoidTypeAnnotation")
                 delete ctorFunction.returnType;
         }
     }
