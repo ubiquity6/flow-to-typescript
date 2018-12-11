@@ -7,7 +7,8 @@ It's nowhere near perfect, but I'm able to use it to generate .d.ts files from a
 
 Note. This:
 https://github.com/Kiikurage/babel-plugin-flow-to-typescript
-Looks like a better idea.
+Looks like a better idea in structure, eg: use babel.
+But i've tried it and it doesn't do the same things. Using both may give you most juice.
 
 CLI Usage
 =============
