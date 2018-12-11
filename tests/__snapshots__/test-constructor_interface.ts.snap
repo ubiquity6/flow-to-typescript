@@ -2,8 +2,6 @@
 
 exports[`constructor_interface main 1`] = `
 "// @flow
-export interface Foo {
-  constructor();
-}
+export interface Foo {}
 "
 `;

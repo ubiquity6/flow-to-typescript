@@ -25,7 +25,7 @@ export type TSTypeParameter = ASTEntry & {
 
 export type Identifier = ASTEntry & {
     type: "Identifier",
-    name : string,
+    name: string,
     typeAnnotation: ASTEntry,
     optional: boolean
 }
@@ -57,4 +57,21 @@ export type FunctionTypeAnnotation = ASTEntry & {
     returnType: ASTEntry,
     rest: any, // ?
     typeParameters: any// ?
+}
+
+export type InterfaceDeclaration = ASTEntry & {
+    type: "InterfaceDeclaration",
+    id: ASTEntry,
+    typeParameters: Array<ASTEntry>, //?
+    body: ObjectTypeAnnotation
+    extends: Array<ASTEntry>
+}
+
+export type ObjectTypeAnnotation = ASTEntry & {
+    type: "ObjectTypeAnnotation",
+    exact: boolean,
+    properties: Array<ASTEntry>
+    indexers: Array<ASTEntry>,
+    callProperties: Array<ASTEntry>,
+    internalSlots: Array<ASTEntry>
 }

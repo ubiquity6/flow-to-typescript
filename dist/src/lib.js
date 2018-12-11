@@ -33,7 +33,8 @@ function convert(srctxt, srcpath, options) {
             AnyTypeAnnotation: converters_1.convertAnyTypeAnnotation,
             VoidTypeAnnotation: converters_1.convertVoidTypeAnnotation,
             ObjectTypeProperty: converters_1.convertObjectTypeProperty,
-            ImportSpecifier: converters_1.convertImportSpecifier
+            ImportSpecifier: converters_1.convertImportSpecifier,
+            InterfaceDeclaration: converters_1.convertInterfaceDeclaration
         });
         if (options.dump_ast) {
             fs_1.default.writeFileSync(srcpath.replace(".js", ".ast"), JSON.stringify(ast, null, 4));

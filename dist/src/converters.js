@@ -60,19 +60,24 @@ function convertObjectTypeProperty(e) {
     var ot = e;
     // right now, we just want to strip variance.
     delete ot.variance;
-    // check if it's a constructor signature
-    if (ot.key && ot.key.type == "Identifier") {
-        var id = ot.key;
-        if (id.name === "constructor" && ot.value.type === "FunctionTypeAnnotation") {
-            // flow likes to put void return types on constructors.
-            // typescript does not.
-            var ctorFunction = ot.value;
-            if (ctorFunction.returnType.type === "VoidTypeAnnotation")
-                delete ctorFunction.returnType;
-        }
-    }
 }
 exports.convertObjectTypeProperty = convertObjectTypeProperty;
+function isAConstructor(e) {
+    if (e.type === "ObjectTypeProperty") {
+        var ot = e;
+        // check if it's a constructor signature
+        if (ot.key && ot.key.type == "Identifier") {
+            var id = ot.key;
+            if (id.name === "constructor" && ot.value.type === "FunctionTypeAnnotation") {
+                var ctorFunction = ot.value;
+                if (ctorFunction.returnType.type === "VoidTypeAnnotation")
+                    return true;
+            }
+        }
+    }
+    return false;
+}
+exports.isAConstructor = isAConstructor;
 function convertImportSpecifier(e) {
     var ot = e;
     // typescript doens't do type only imports in this way.
@@ -81,4 +86,15 @@ function convertImportSpecifier(e) {
     }
 }
 exports.convertImportSpecifier = convertImportSpecifier;
+function convertInterfaceDeclaration(e) {
+    var id = e;
+    for (var i = id.body.properties.length - 1; i >= 0; i--) {
+        var v = id.body.properties[i];
+        if (isAConstructor(v)) {
+            // remove constructors from interfaces
+            id.body.properties.splice(i, 1);
+        }
+    }
+}
+exports.convertInterfaceDeclaration = convertInterfaceDeclaration;
 //# sourceMappingURL=converters.js.map

@@ -2,7 +2,7 @@ import * as prettier from 'prettier';
 import fs from 'fs';
 
 import {ASTEntry}  from './asttypes';
-import { convertTypeCastExpression, convertTypeParameter, convertTypeAnnotation, convertAnyTypeAnnotation, convertVoidTypeAnnotation, convertObjectTypeProperty, convertImportSpecifier } from './converters';
+import { convertTypeCastExpression, convertTypeParameter, convertTypeAnnotation, convertAnyTypeAnnotation, convertVoidTypeAnnotation, convertObjectTypeProperty, convertImportSpecifier, convertInterfaceDeclaration } from './converters';
 
 export type ConvertOptions = {
   dump_ast? : boolean
@@ -33,7 +33,8 @@ export function convert(srctxt:string|null, srcpath: string, options : ConvertOp
       AnyTypeAnnotation: convertAnyTypeAnnotation,
       VoidTypeAnnotation: convertVoidTypeAnnotation,
       ObjectTypeProperty: convertObjectTypeProperty,
-      ImportSpecifier: convertImportSpecifier
+      ImportSpecifier: convertImportSpecifier,
+      InterfaceDeclaration: convertInterfaceDeclaration
     });
 
     
